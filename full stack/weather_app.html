@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Custom CSS to enhance the UI */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #83a4d4, #b6fbff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .weather-app {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            max-width: 450px;
+            width: 100%;
+        }
+
+        .card-title {
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        #temp {
+            font-size: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 15px;
+        }
+
+        #temp img {
+            margin-left: 10px;
+            width: 60px;
+            height: 60px;
+        }
+
+        .additional-info {
+            font-size: 16px;
+            margin: 5px 0;
+        }
+
+        .weather-detail-row {
+            margin-bottom: 10px;
+        }
+
+        .weather-icon-large {
+            width: 100px;
+            height: 100px;
+        }
+
+        #weather-description {
+            font-size: 18px;
+        }
+
+        #error-message {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="weather-app card">
+            <div class="card-body">
+                <h1 class="card-title text-center">Weather App</h1>
+                <div class="form-group">
+                    <input type="text" id="location" class="form-control" placeholder="Enter city name" aria-label="Location">
+                </div>
+                <div class="text-center">
+                    <button class="btn btn-primary" onclick="getWeather()">Get Weather</button>
+                </div>
+                <div class="mt-4 weather-info text-center">
+                    <h2 id="city-name"></h2>
+                    <div id="temp"></div>
+                    <p id="weather-description"></p>
+                    <div id="error-message"></div>
+                    <div class="row weather-detail-row">
+                        <div class="col-md-6 additional-info">
+                            <p id="feels-like"></p>
+                            <p id="min-max-temp"></p>
+                        </div>
+                        <div class="col-md-6 additional-info">
+                            <p id="wind"></p>
+                            <p id="humidity"></p>
+                            <p id="pressure"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        async function getWeather() {
+            const city = document.getElementById("location").value;
+            const apiKey = '51d40b6faa542f3843594e71db2efe3c'; // Replace with your OpenWeatherMap API key
+            const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+
+                if (data.cod === 200) {
+                    const weatherIcon = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+                    document.getElementById("city-name").textContent = data.name;
+                    document.getElementById("temp").innerHTML = `${data.main.temp}°C <img src="${weatherIcon}" alt="Weather Icon">`;
+                    document.getElementById("weather-description").textContent = `Weather: ${data.weather[0].description}`;
+                    document.getElementById("feels-like").textContent = `Feels Like: ${data.main.feels_like}°C`;
+                    document.getElementById("min-max-temp").textContent = `Min: ${data.main.temp_min}°C / Max: ${data.main.temp_max}°C`;
+                    document.getElementById("wind").textContent = `Wind Speed: ${data.wind.speed} m/s`;
+                    document.getElementById("humidity").textContent = `Humidity: ${data.main.humidity}%`;
+                    document.getElementById("pressure").textContent = `Pressure: ${data.main.pressure} hPa`;
+                    document.getElementById("error-message").textContent = "";
+                } else {
+                    document.getElementById("city-name").textContent = "";
+                    document.getElementById("temp").textContent = "";
+                    document.getElementById("weather-description").textContent = "";
+                    document.getElementById("feels-like").textContent = "";
+                    document.getElementById("min-max-temp").textContent = "";
+                    document.getElementById("wind").textContent = "";
+                    document.getElementById("humidity").textContent = "";
+                    document.getElementById("pressure").textContent = "";
+                    document.getElementById("error-message").textContent = "City not found.";
+                }
+            } catch (error) {
+                console.error("Error fetching the weather data:", error);
+            }
+        }
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

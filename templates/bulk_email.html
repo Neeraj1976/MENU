@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bulk Email</title>
+    
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: #000;
+            color: white;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        .hero {
+            margin-top: 100px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            color: #00aeff;
+        }
+
+        .hero p {
+            color: #00aeff;
+            font-style: italic;
+        }
+
+        .email-container {
+            margin: 0 auto;
+            width: 60%;
+            background-color: #1b1b1b;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(13, 88, 163, 0.6);
+            text-align: left;
+        }
+
+        .email-container input, 
+        .email-container textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 2px solid #00aeff;
+            border-radius: 5px;
+            background-color: #2b2b2b;
+            color: white;
+            font-size: 1rem;
+        }
+
+        .email-container button {
+            padding: 10px 20px;
+            background-color: #00aeff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .email-container button:hover {
+            background-color: #00aeff;
+        }
+
+        .footer {
+            margin-top: 50px;
+            font-size: 0.9rem;
+            color: #00aeff;
+        }
+
+        .footer a {
+            color: #00aeff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border: 2px solid #00aeff;
+            border-radius: 5px;
+            background-color: transparent;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .footer a:hover {
+            background-color: #00aeff;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <h1>Bulk Email</h1>
+        <p>Send bulk emails directly from this page</p>
+    </section>
+
+    <section class="email-container">
+        <form action="/send_bulk_email" method="POST">
+            <label for="emails">Recipient Emails (comma-separated):</label>
+            <input type="text" id="emails" name="emails" placeholder="Enter recipient email addresses" required>
+
+            <label for="subject">Subject:</label>
+            <input type="text" id="subject" name="subject" placeholder="Enter email subject" required>
+
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="4" placeholder="Enter your message" required></textarea>
+
+            <button type="submit">Send Emails</button>
+        </form>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2024 My Portfolio</p>
+        <p>
+            <a
+              href="https://github.com/Ankit1680/Menu_based_project"
+              target="_blank"
+              >GitHub</a
+            >
+            |
+            <a
+              href="https://www.linkedin.com/in/ankit-vishwakarma-1958a4251/"
+              target="_blank"
+              >LinkedIn</a
+            >
+            |
+          </p>
+    </footer>
+
+</body>
+</html>

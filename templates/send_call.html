@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Make a Call with Twilio</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        label {
+            display: block;
+            text-align: left;
+            margin-bottom: 5px;
+            color: #555;
+            font-weight: bold;
+        }
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        input[type="text"]:focus, textarea:focus {
+            border-color: #00aeff;
+            outline: none;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #00aeff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #00aeff;
+        }
+        .message {
+            margin-top: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .error {
+            color: red;
+        }
+        .success {
+            color: #00aeff;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Make a Call</h2>
+        <form id="callForm" action="/make_call" method="POST" onsubmit="return validateForm()">
+            <label for="phone">Recipient Phone Number:</label>
+            <input type="text" id="phone" name="phone" placeholder="e.g., +1234567890" required>
+
+            <label for="message">Message to Say:</label>
+            <textarea id="message" name="message" placeholder="Enter your message" required></textarea>
+
+            <button type="submit">Make Call</button>
+        </form>
+
+        <!-- Flash message display -->
+        <div class="message">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <ul>
+                        {% for category, message in messages %}
+                            <li class="{{ category }}">{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+        </div>
+    </div>
+
+    <script>
+        function validateForm() {
+            const phone = document.getElementById('phone').value;
+            const message = document.getElementById('message').value;
+
+            if (phone === '' || message === '') {
+                alert('Please fill in both fields.');
+                return false;
+            }
+
+            // Simple phone number validation (basic length check, real validation should be more robust)
+            const phonePattern = /^\+?[0-9]{10,15}$/;
+            if (!phonePattern.test(phone)) {
+                alert('Please enter a valid phone number with country code.');
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+
+</body>
+</html>

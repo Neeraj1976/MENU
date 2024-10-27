@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About</title>
+    
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* General Styles */
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: #000;
+            color: white;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: #00aeff;
+            border-radius: 10px;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: right;
+            padding: 20px;
+            background-color: transparent;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar.sticky {
+            background-color: #1b1b1b;
+        }
+
+        .navbar a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #00aeff;
+            font-weight: bold;
+            position: relative;
+        }
+
+        .navbar a::before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: #00aeff;
+            bottom: 0;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+
+        .navbar a:hover::before {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 50px;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            color: #00aeff;
+        }
+        .hero p {
+            color: #00aeff;
+            font-style: italic;
+        }
+
+        /* About Section */
+        .about {
+            margin: 0 auto;
+            width: 80%;
+            background-color: #1b1b1b;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(0, 204, 255, 0.6);
+        }
+        .about h2 {
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+            color: #00aeff;
+        }
+        .about p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 50px;
+            font-size: 0.9rem;
+            color: #00aeff;
+        }
+
+        .footer a {
+            color: #00aeff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border: 2px solid #00aeff;
+            border-radius: 5px;
+            background-color: transparent;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .footer a:hover {
+            background-color: #00aeff;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="navbar" id="navbar">
+            <a href="index.html">Home</a>
+            <a href="project.html">Projects</a>
+            <a href="about.html">About</a>
+            <a href="skills.html">Skills</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </header>
+
+    <section class="hero" id="about">
+        <h1>About Me</h1>
+        <p>Learn more about my background and experiences.</p>
+    </section>
+
+    <section class="about">
+        <h2>My Background</h2>
+        <p>About Me
+            Hello! I’m Ankit Vishwakarma, Co-Founder of Bachatt, where I bring a deep technical expertise and strategic vision to our mission of simplifying financial wellness. With a strong foundation in Red Hat Linux, I’m an RHCSA-certified professional, skilled in tools like Docker that optimize and automate infrastructure. My passion for cloud technologies, particularly AWS, drives my commitment to building scalable, efficient systems that support our innovative solutions at Bachatt.
+            My aim is to leverage technology to bridge the distance between people and the services they require by providing efficient and creative solutions.</p>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2024 My Portfolio</p>
+        <p>
+            <a
+              href="https://github.com/Ankit1680/Menu_based_project"
+              target="_blank"
+              >GitHub</a
+            >
+            |
+            <a
+              href="https://www.linkedin.com/in/ankit-vishwakarma-1958a4251/"
+              target="_blank"
+              >LinkedIn</a
+            >
+            |
+          </p>
+    </footer>
+
+    <script>
+        // Scroll-based animations
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            
+            // Sticky navbar
+            if (window.scrollY > 50) {
+                navbar.classList.add('sticky');
+            } else {
+                navbar.classList.remove('sticky');
+            }
+        });
+    </script>
+
+</body>
+</html>
